@@ -3062,9 +3062,7 @@ class Telegram
             curl_setopt($ch, CURLOPT_POST, 1);
             curl_setopt($ch, CURLOPT_POSTFIELDS, $content);
         }
-		echo "inside curl if";
 		if (!empty($this->proxy)) {
-			echo "inside proxy if";
 			if (array_key_exists("type", $this->proxy)) {
 				curl_setopt($ch, CURLOPT_PROXYTYPE, $this->proxy["type"]);
 			}
@@ -3074,13 +3072,7 @@ class Telegram
 			}
 			
 			if (array_key_exists("url", $this->proxy)) {
-				echo "Proxy Url";
 				curl_setopt($ch, CURLOPT_PROXY, $this->proxy["url"]);
-			}
-			
-			if (array_key_exists("port", $this->proxy)) {
-				echo "Proxy port";
-				curl_setopt($ch, CURLOPT_PROXYPORT, $this->proxy["port"]);
 			}
 			
 		}
@@ -3089,7 +3081,6 @@ class Telegram
         if ($result === false) {
             $result = json_encode(['ok'=>false, 'curl_error_code' => curl_errno($ch), 'curl_error' => curl_error($ch)]);
         }
-		echo $result;
         curl_close($ch);
         if ($this->log_errors) {
             if (class_exists('TelegramErrorLogger')) {
